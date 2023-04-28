@@ -1,9 +1,9 @@
 pipeline {
 
-  environment {
+/*   environment {
     registry = "192.168.1.81:5000/justme/myweb"
     dockerImage = ""
-  }
+  } */
 
   agent any
 
@@ -23,7 +23,7 @@ pipeline {
       }
     }
 
-    stage('Push Image') {
+/*     stage('Push Image') {
       steps{
         script {
           docker.withRegistry( "" ) {
@@ -31,9 +31,9 @@ pipeline {
           }
         }
       }
-    }
+    } */
 
-    stage('Deploy App') {
+/*     stage('Deploy App') {
       steps {
         script {
           kubernetesDeploy(configs: "myweb.yaml", kubeconfigId: "mykubeconfig")
@@ -41,6 +41,6 @@ pipeline {
       }
     }
 
-  }
+  } */
 
 }
