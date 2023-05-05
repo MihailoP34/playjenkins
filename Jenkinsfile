@@ -12,6 +12,10 @@ spec:
   containers:
   - name: jnlp
     image: jenkins/inbound-agent:nanoserver-1809
+    cmd:
+    - ping
+    - localhost
+    - -t
     env:
     - name: CONTAINER_ENV_VAR
       value: jnlp
