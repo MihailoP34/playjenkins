@@ -1,3 +1,5 @@
+pipeline{
+
 podTemplate(yaml: '''
     apiVersion: v1
     kind: Pod
@@ -11,7 +13,7 @@ podTemplate(yaml: '''
         - localhost
         - -t
 ''') {
-  node(docker) {
+  node(POD_LABEL) {
     stage('Pls work') {
         git 'https://github.com/MihailoP34/playjenkins.git'
       container('docker') {
@@ -22,4 +24,6 @@ podTemplate(yaml: '''
     }
 
   }
+}
+
 }
