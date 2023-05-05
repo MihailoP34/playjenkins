@@ -9,7 +9,7 @@ metadata:
 spec:
   containers:
   - name: docker-cli
-    image: "docker:rc-windowsservercore-1809"
+    image: docker:rc-windowsservercore-1809
     env:
     - name: CONTAINER_ENV_VAR
       value: docker
