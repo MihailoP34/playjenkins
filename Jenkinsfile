@@ -1,46 +1,17 @@
-pipeline {
-
-/*   environment {
-    registry = "192.168.1.81:5000/justme/myweb"
-    dockerImage = ""
-  } */
-
-  agent { label 'docker' }
-
-  stages {
-
-    stage('Checkout Source') {
-      steps {
-        git 'https://github.com/MihailoP34/playjenkins.git'
-      }
-    }
-
-    stage('Build image') {
-      steps{
-        script {
-          dockerImage = docker.build registry + ":$BUILD_NUMBER"
-        }
-      }
-    }
-
-/*     stage('Push Image') {
-      steps{
-        script {
-          docker.withRegistry( "" ) {
-            dockerImage.push()
-          }
-        }
-      }
-    } */
-
-/*     stage('Deploy App') {
-      steps {
-        script {
-          kubernetesDeploy(configs: "myweb.yaml", kubeconfigId: "mykubeconfig")
-        }
-      }
-    }
-  */
-  } 
-
-}
+agent {
+    kubernetes {
+        defaultContainer 'docker'
+        yaml '''
+kind: Pod
+spec:
+  containers:
+  - name: docer-cli
+    image: docker:rc-windowsservercore-1809
+    command:
+    - powershell.exe
+    args:
+    - ping
+    - localhost
+    - -t
+'''
+   }
