@@ -18,10 +18,8 @@ spec:
   stages {
     stage('Run pls') {
       steps {
-        cmd "echo OUTSIDE_CONTAINER_ENV_VAR = ${CONTAINER_ENV_VAR}"
         container('jnlp') {
-          cmd 'echo MAVEN_CONTAINER_ENV_VAR = ${CONTAINER_ENV_VAR}'
-          cmd 'mvn -version'
+          powershell 'docker --version'
         }
       }
     }
