@@ -4,7 +4,6 @@ pipeline {
       yaml '''
 metadata:
   labels:
-    some-label: some-label-value
     class: KubernetesDeclarativeAgentTest
 spec:
   nodeSelector:
@@ -12,13 +11,7 @@ spec:
   containers:
   - name: jnlp
     image: jenkins/inbound-agent:nanoserver-1809
-    cmd:
-    - ping
-    - localhost
-    - -t
-    env:
-    - name: CONTAINER_ENV_VAR
-      value: jnlp
+    tty: true
   - name: docker-cli
     image: docker:rc-windowsservercore-1809
     cmd:
@@ -34,12 +27,14 @@ spec:
 '''
     }
   }
-  stages {
-    stage('Run pls') {
-      steps {
-        powershell HOSTNAME
-        container('docker-cli') {
-          powershell ' docker build . -t aspire.io/rct-automation:0.0.1 -o type=tar,dest="C:\\Users\\mihailo.plavsic\\Documents\\rct-automation.tar" '
+  node(POD_LABEL){
+    stages {
+      stage('Run pls') {
+        steps {
+          powershell HOSTNAME
+          container('docker-cli') {
+            powershell ' docker build . -t aspire.io/rct-automation:0.0.1 -o type=tar,dest="C:\\Users\\mihailo.plavsic\\Documents\\rct-automation.tar" '
+          }
         }
       }
     }
