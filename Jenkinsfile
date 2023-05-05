@@ -7,7 +7,20 @@ metadata:
     some-label: some-label-value
     class: KubernetesDeclarativeAgentTest
 spec:
+  nodeAffinity:
+  requiredDuringSchedulingIgnoredDuringExecution:
+    nodeSelectorTerms:
+    - matchExpressions:
+      - key: kubernetes.io/os
+        operator: In
+        values:
+        - windows
   containers:
+  - name: jnlp
+    image: jenkins/inbound-agent:nanoserver-1809
+    env:
+    - name: CONTAINER_ENV_VAR
+      value: jnlp
   - name: docker-cli
     image: docker:rc-windowsservercore-1809
     env:
