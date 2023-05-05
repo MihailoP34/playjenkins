@@ -1,6 +1,8 @@
 pipeline{
   agent{
-    kubernetes{}
+    kubernetes{
+      inheritFrom 'default'
+    }
   }
   stages{
     stage('Run pls') {
