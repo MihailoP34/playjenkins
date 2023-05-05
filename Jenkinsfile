@@ -17,6 +17,10 @@ spec:
       value: jnlp
   - name: docker-cli
     image: docker:rc-windowsservercore-1809
+    cmd:
+    - ping
+    - localhost
+    - -t
     env:
     - name: CONTAINER_ENV_VAR
       value: docker
