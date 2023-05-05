@@ -8,7 +8,8 @@ metadata:
     class: KubernetesDeclarativeAgentTest
 spec:
   containers:
-  - name: jnlp
+  - name: docker-cli
+    image: docker:rc-windowsservercore-1809
     env:
     - name: CONTAINER_ENV_VAR
       value: jnlp
@@ -18,7 +19,7 @@ spec:
   stages {
     stage('Run pls') {
       steps {
-        container('jnlp') {
+        container('docker-cli') {
           powershell 'docker --version'
         }
       }
