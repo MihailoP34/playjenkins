@@ -15,4 +15,19 @@ spec:
     - -t
 '''
    }
+   stages {
+    stage('Init'){
+      steps{
+        powershell.exe "Started docker agent"
+      }
+    }
+
+   stages {
+    stage('Build'){
+      steps{
+        powershell.exe """ docker build . -t aspire.io/rct-automation:0.0.1 -o type=tar,dest="C:\Users\mihailo.plavsic\Documents\rct-automation.tar" """
+      }
+    }
+
+   }
 }
