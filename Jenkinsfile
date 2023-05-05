@@ -1,4 +1,7 @@
 pipeline{
+  agent{
+    kubernetes{}
+  }
   stages{
     stage('Run pls') {
 
