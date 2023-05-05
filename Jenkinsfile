@@ -1,18 +1,6 @@
 pipeline{
 
-podTemplate(yaml: '''
-    apiVersion: v1
-    kind: Pod
-    spec:
-      containers:
-      - name: docker
-        image: docker:rc-windowsservercore-1809
-        command:
-        - ping
-        args:
-        - localhost
-        - -t
-''') {
+podTemplate {
   node(POD_LABEL) {
     stage('Pls work') {
         git 'https://github.com/MihailoP34/playjenkins.git'
