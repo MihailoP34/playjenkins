@@ -2,7 +2,7 @@ pipeline{
 
   agent {
       kubernetes {
-          defaultContainer 'docker'
+        yamlFile 'yaml'
           yaml '''
   kind: Pod
   spec:
