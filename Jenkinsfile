@@ -16,11 +16,14 @@ spec:
     - name: CONTAINER_ENV_VAR
       value: jnlp
   - name: docker-cli
-    image: docker:rc-windowsservercore
+    image: docker:rc-windowsservercore-1809
     cmd:
     - ping
     - localhost
     - -t
+    tty: true
+    securityContext:
+      privileged: true
     env:
     - name: CONTAINER_ENV_VAR
       value: docker
