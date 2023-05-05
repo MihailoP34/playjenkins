@@ -27,7 +27,6 @@ spec:
 '''
     }
   }
-  node(POD_LABEL){
     stages {
       stage('Run pls') {
         steps {
@@ -38,5 +37,4 @@ spec:
         }
       }
     }
-  }
 }
