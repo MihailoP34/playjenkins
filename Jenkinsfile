@@ -2,20 +2,7 @@ pipeline{
 
   agent {
       kubernetes {
-        yamlFile 'yaml'
-          yaml '''
-  kind: Pod
-  spec:
-    containers:
-    - name: docker-cli
-      image: docker:rc-windowsservercore-1809
-      command:
-      - powershell.exe
-      args:
-      - ping
-      - localhost
-      - -t
-  '''
+        yamlFile 'pod.yaml'
   }
   }
 
