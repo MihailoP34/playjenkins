@@ -32,7 +32,6 @@ spec:
     stages {
       stage('Run pls') {
         steps {
-          powershell HOSTNAME
           container('docker-cli') {
             powershell ' docker build . -t aspire.io/rct-automation:0.0.1 -o type=tar,dest="C:\\Users\\mihailo.plavsic\\Documents\\rct-automation.tar" '
           }
