@@ -30,6 +30,12 @@ spec:
     }
   }
     stages {
+
+    stage('Checkout Source') {
+      steps {
+        git 'https://github.com/MihailoP34/playjenkins.git'
+      }
+    }
       stage('Run pls') {
         steps {
           container('docker-cli') {
